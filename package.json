@@ -1,0 +1,28 @@
+{
+	"name": "@2idiots/twoidiotslearning-website",
+	"version": "1.0.0",
+	"description": "The twoidiotslearning.com website",
+	"main": "index.js",
+	"scripts": {
+		"build": "node build",
+		"dev": "concurrently \"node build --dev\" \"http-server -a localhost -o\""
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"material-ui": "^0.20.2",
+		"react": "^16.14.0",
+		"react-dom": "^16.14.0",
+		"react-router-dom": "^5.3.0"
+	},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^4.31.0",
+		"@typescript-eslint/parser": "^4.31.0",
+		"concurrently": "^6.2.1",
+		"esbuild": "^0.12.26",
+		"eslint": "^7.32.0",
+		"http-server": "^13.0.1",
+		"husky": "^7.0.2",
+		"typescript": "^4.4.2"
+	}
+}

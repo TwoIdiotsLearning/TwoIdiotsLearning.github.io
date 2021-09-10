@@ -5,6 +5,7 @@
 	"description": "The twoidiotslearning.com website",
 	"main": "index.js",
 	"scripts": {
+		"prepare": "husky install",
 		"build": "node build",
 		"dev": "concurrently \"node build --dev\" \"http-server -a localhost -o\""
 	},

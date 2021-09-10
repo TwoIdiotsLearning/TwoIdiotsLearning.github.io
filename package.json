@@ -1,5 +1,6 @@
 {
 	"name": "@2idiots/twoidiotslearning-website",
+	"private": true,
 	"version": "1.0.0",
 	"description": "The twoidiotslearning.com website",
 	"main": "index.js",

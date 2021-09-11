@@ -28,7 +28,7 @@ for (let i = 1; i <= 4; i++) {
 	fetchMock.get(`https://api.github.com/repos/TwoIdiotsLearning/project${i}/git/trees/main?recursive=1`, {
 		tree: [
 			{
-				path: "tilproject.json"
+				path: ".til/project.json"
 			}
 		]
 	});
@@ -37,20 +37,23 @@ fetchMock.get("https://api.github.com/repos/TwoIdiotsLearning/non-project-repo/g
 	tree: []
 });
 
-fetchMock.get("https://raw.githubusercontent.com/TwoIdiotsLearning/project1/tilproject.json", {
+fetchMock.get("https://raw.githubusercontent.com/TwoIdiotsLearning/project1/.til/project.json", {
 	enabled: true,
 	name: "Project 1",
+	shortDescription: "this is an <i>awesome</i> project",
+	fullDescription: "Some more words about this really nice project"
 });
-fetchMock.get("https://raw.githubusercontent.com/TwoIdiotsLearning/project2/tilproject.json", {
+fetchMock.get("https://raw.githubusercontent.com/TwoIdiotsLearning/project2/.til/project.json", {
 	enabled: true,
 	name: "Project 2",
-	description: "this is a <u>really</u> nice project"
+	shortDescription: "this is a <u>really</u> nice project",
+	fullDescription: "Some more words about this really nice project, and this text also has html in it <ul><li>like this</li><li>and this</li><li>and obviously this</li></ul>"
 });
-fetchMock.get("https://raw.githubusercontent.com/TwoIdiotsLearning/project3/tilproject.json", {
+fetchMock.get("https://raw.githubusercontent.com/TwoIdiotsLearning/project3/.til/project.json", {
 	enabled: false,
 	name: "Project 3",
 });
-fetchMock.get("https://raw.githubusercontent.com/TwoIdiotsLearning/project4/tilproject.json", {
+fetchMock.get("https://raw.githubusercontent.com/TwoIdiotsLearning/project4/.til/project.json", {
 	enabled: true,
 });
-fetchMock.get("https://raw.githubusercontent.com/TwoIdiotsLearning/non-project-repo/tilproject.json", 404);
+fetchMock.get("https://raw.githubusercontent.com/TwoIdiotsLearning/non-project-repo/.til/project.json", 404);

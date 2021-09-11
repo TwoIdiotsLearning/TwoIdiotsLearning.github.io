@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getProjects, ProjectDescriptor } from "../api";
+import { Link } from "react-router-dom"
 
 export const Projects = (): JSX.Element => {
 	const [projects, setProjects] = useState<ProjectDescriptor[]>([]);
@@ -9,11 +10,11 @@ export const Projects = (): JSX.Element => {
 	return (
 		<div>
 			{
-				projects.map(({ id, name, description }) => (
-					<div key={id}>
+				projects.map(({ id, name, shortDescription }) => (
+					<Link key={id} to={`/projects/${id}`}>
 						<h2>{name}</h2>
-						{description && <h5 dangerouslySetInnerHTML={{ __html: description }} />}
-					</div>
+						<h5 dangerouslySetInnerHTML={{ __html: shortDescription }} />
+					</Link>
 				))
 			}
 		</div>

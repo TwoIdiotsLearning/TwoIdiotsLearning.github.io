@@ -10,6 +10,8 @@ import {
 	Home,
 	Blog,
 	Projects,
+	ProjectHome,
+	ProjectTutorial,
 } from "./pages"
 
 const App = () => {
@@ -31,6 +33,12 @@ const App = () => {
 				<Switch>
 					<Route path="/blog">
 						<Blog />
+					</Route>
+					<Route path="/projects/:projectId/tutorial/:chapter?">
+						<ProjectTutorial />
+					</Route>
+					<Route path="/projects/:projectId">
+						<ProjectHome />
 					</Route>
 					<Route path="/projects">
 						<Projects />

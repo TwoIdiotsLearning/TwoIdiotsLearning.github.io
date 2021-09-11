@@ -1,7 +1,12 @@
-export interface ProjectDescriptor {
-	id: string;
-	name: string;
-	description?: string;
+export type GalleryItemURL = string;
+export enum GalleryItemType {
+	Image = "image",
+	Video = "video",
+}
+export interface GalleryItem {
+	url: GalleryItemURL;
+	type: GalleryItemType,
+	caption?: string;
 }
 
 export enum TutorialDifficulty {
@@ -10,13 +15,14 @@ export enum TutorialDifficulty {
 	Hard = "hard",
 }
 
-export type TutorialStepImageURL = string;
 export type TutorialStepInstructionContent = string;
-
-export type TutorialStepImage = {
-	url: TutorialStepImageURL;
-	caption?: string;
-} | TutorialStepImageURL;
+export interface ProjectDescriptor {
+	id: string;
+	name: string;
+	shortDescription: string;
+	fullDescription: string;
+	gallery?: GalleryItem[];
+}
 
 export type TutorialStepInstruction = {
 	content: TutorialStepInstructionContent;
@@ -25,7 +31,7 @@ export type TutorialStepInstruction = {
 } | TutorialStepInstructionContent;
 
 export interface TutorialStep {
-	gallery?: TutorialStepImage[]; // image urls
+	gallery?: GalleryItem[];
 	instructions: TutorialStepInstruction[]
 }
 

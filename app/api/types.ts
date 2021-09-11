@@ -1,6 +1,7 @@
 export interface ProjectDescriptor {
 	id: string;
 	name: string;
+	description?: string;
 }
 
 export enum TutorialDifficulty {

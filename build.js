@@ -4,11 +4,11 @@ const esbuild = require("esbuild");
 const devMode = !!process.argv.includes("--dev");
 
 esbuild.build({
-	entryPoints: ["app/index.tsx"],
+	entryPoints: [devMode ? "app/api/mocks/index.ts" : null, "app/index.tsx"].filter(n => !!n),
 	bundle: true,
 	minify: !devMode,
 	sourcemap: true,
-	outfile: "dist/main.js",
+	outdir: "dist",
 	watch: devMode ? {
 		onRebuild(error, result) {
 			if (error) console.error("watch build failed:", error)

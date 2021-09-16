@@ -4,12 +4,12 @@ import { ghRequest, ghJsonContent } from "./githubRequest";
 
 const debug = mainDebug.extend("api:getProjects");
 
-interface GithubRepoDescriptor {
+export interface GithubRepoDescriptor {
 	name: string;
 	default_branch: string;
 }
 
-interface GithubTreeDescriptor {
+export interface GithubTreeDescriptor {
 	tree: Array<{
 		path: string;
 	}>;
@@ -19,6 +19,7 @@ type TILProjectJson = Omit<ProjectDescriptor, "id"> & {
 	enabled: boolean;
 }
 
+let reposCache: Promise<GithubRepoDescriptor[]> | null = null;
 let projectsCache: Promise<ProjectDescriptor[]> | null = null; //in-me,pry cache
 
 const validateTILProjectJson = (json: TILProjectJson): boolean => {
@@ -29,12 +30,26 @@ const validateTILProjectJson = (json: TILProjectJson): boolean => {
 	return true;
 }
 
+export function getRepos(): Promise<GithubRepoDescriptor[]> {
+	if (reposCache) {
+		return reposCache;
+	}
+	reposCache = ghRequest("orgs/TwoIdiotsLearning/repos") as Promise<GithubRepoDescriptor[]>;
+	return reposCache;
+}
+
+export async function getRepoTree(repoName: string): Promise<GithubTreeDescriptor["tree"]> {
+	const repo = (await getRepos()).find(r => repoName === r.name);
+	const { tree } = await ghRequest(`repos/TwoIdiotsLearning/${repo.name}/git/trees/${repo.default_branch}?recursive=1`) as GithubTreeDescriptor;
+	return tree;
+}
+
 export function getProjects(): Promise<ProjectDescriptor[]> {
 	if (projectsCache) {
 		return projectsCache;
 	}
 	projectsCache = (async () => {
-		const tilRepos = await ghRequest("orgs/TwoIdiotsLearning/repos") as GithubRepoDescriptor[];
+		const tilRepos = await getRepos();
 		debug(`Found ${tilRepos.length} TIL repositories. Checking which are project repos...`);
 		const projectReposPromises = tilRepos.map(repo => {
 			return (async () => {

@@ -1,1 +1,2 @@
 import "./getProjects";
+import "./getTutorials";

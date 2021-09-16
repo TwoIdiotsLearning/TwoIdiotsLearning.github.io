@@ -29,6 +29,9 @@ for (let i = 1; i <= 4; i++) {
 		tree: [
 			{
 				path: ".til/project.json"
+			},
+			{
+				path: ".til/tutorial/tutorial.json"
 			}
 		]
 	});

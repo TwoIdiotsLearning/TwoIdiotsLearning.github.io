@@ -4,6 +4,7 @@ import {
 	Switch,
 	Route,
 	Link,
+	Redirect,
 } from "react-router-dom";
 import { render } from "react-dom";
 import {
@@ -34,9 +35,12 @@ const App = () => {
 					<Route path="/blog">
 						<Blog />
 					</Route>
-					<Route path="/projects/:projectId/tutorial/:chapter?">
+					<Route path="/projects/:projectId/tutorial/:chapter">
 						<ProjectTutorial />
 					</Route>
+					<Route path="/projects/:projectId/tutorial" render={({match}) => (
+						<Redirect to={`/projects/${match.params.projectId}/tutorial/0`} />
+					)}/>
 					<Route path="/projects/:projectId">
 						<ProjectHome />
 					</Route>

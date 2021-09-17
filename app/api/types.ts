@@ -31,6 +31,7 @@ export type TutorialStepInstruction = {
 } | TutorialStepInstructionContent;
 
 export interface TutorialStep {
+	title: string;
 	gallery?: GalleryItem[];
 	instructions: TutorialStepInstruction[]
 }

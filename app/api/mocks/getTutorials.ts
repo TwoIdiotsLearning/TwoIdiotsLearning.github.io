@@ -16,6 +16,7 @@ fetchMock.get("https://raw.githubusercontent.com/TwoIdiotsLearning/project1/.til
 		description: `Chapter Description ${chapter}`,
 		steps: [
 			{
+				title: "Doing this",
 				gallery: [],
 				instructions: [
 					"Instruction 1",
@@ -29,6 +30,7 @@ fetchMock.get("https://raw.githubusercontent.com/TwoIdiotsLearning/project1/.til
 				]
 			},
 			{
+				title: "Doing that",
 				gallery: [],
 				instructions: [
 					"Instruction 5",
@@ -61,6 +63,7 @@ fetchMock.get("https://raw.githubusercontent.com/TwoIdiotsLearning/project2/.til
 		description: `Chapter Description ${chapter}`,
 		steps: [
 			{
+				title: "Doing this",
 				gallery: [],
 				instructions: [
 					"Instruction 1",
@@ -74,6 +77,7 @@ fetchMock.get("https://raw.githubusercontent.com/TwoIdiotsLearning/project2/.til
 				]
 			},
 			{
+				title: "Doing that",
 				gallery: [],
 				instructions: [
 					"Instruction 5",
